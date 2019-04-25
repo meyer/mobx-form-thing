@@ -140,7 +140,7 @@ export function getFormContext<T extends Record<string, any>>(props: FormContext
           .catch(handleError)
           // set status
           .then(
-            action<(s: FormStatus | undefined) => void>('handleSubmit async', formStatus => {
+            action('handleSubmit async', (formStatus: FormStatus | undefined) => {
               this.formStatus = formStatus || null;
               const hideAfter = formStatus && formStatus.hideAfter;
               if (hideAfter) {
@@ -159,7 +159,13 @@ export function getFormContext<T extends Record<string, any>>(props: FormContext
       },
     },
     {
+      validationResult: computed,
+      isValid: computed,
+      isValidating: computed,
+      formStatus: computed,
+      errors: computed,
       isDirty: computed,
+
       setField: action,
       setTouched: action,
       handleReset: action,
@@ -192,7 +198,6 @@ export function getFormContext<T extends Record<string, any>>(props: FormContext
           handleChangeEvent,
           handleValueChange,
 
-          // we use computed values here so that the individual values can be observed
           get error(): string | undefined {
             // const isTouched = ret.touchedFields[name];
             return (formState.errors && formState.errors[name]) || undefined;
@@ -207,14 +212,11 @@ export function getFormContext<T extends Record<string, any>>(props: FormContext
           },
 
           get validationState(): ValidationState | undefined {
-            const isTouched = formState.touchedFields[name];
-            const hasError = formState.errors && !!formState.errors[name];
-
-            if (!isTouched) {
-              return hasError ? 'warning' : undefined;
+            if (!this.isTouched) {
+              return this.error ? 'warning' : undefined;
             }
 
-            return hasError ? 'error' : 'success';
+            return this.error ? 'error' : 'success';
           },
 
           get value(): T {

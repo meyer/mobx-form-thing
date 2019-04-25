@@ -21,6 +21,9 @@ module.exports = api => {
       // this probably isn't needed, since we don't use JSX in this lib
       require.resolve('@babel/preset-react'),
     ],
-    plugins: [require.resolve('@babel/plugin-proposal-class-properties')],
+    plugins: [
+      require.resolve('@babel/plugin-proposal-class-properties'),
+      require.resolve('babel-plugin-react-createcontext-displayname'),
+    ],
   };
 };
