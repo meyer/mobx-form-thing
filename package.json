@@ -1,0 +1,40 @@
+{
+  "name": "mobx-form-thing",
+  "version": "0.0.0",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
+  "author": "meyer <github.com@meyer.fm>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "rimraf lib/*; rollup -c"
+  },
+  "dependencies": {
+    "@types/react": "*",
+    "@types/yup": "*",
+    "mobx": ">=4 <6",
+    "mobx-react-lite": "^1",
+    "react": "^16.8",
+    "react-dom": "^16.8",
+    "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "@types/babel__core": "^7.1.1",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.10.1",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-typescript2": "^0.21.0",
+    "typescript": "^3.4.5"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "trailingComma": "es5",
+    "singleQuote": true
+  }
+}
