@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { FieldContextObj } from './FormDomain';
+import { FieldContextObj } from './getFormContext';
 export declare const FieldNameContext: import("react").Context<string>;
 export declare const useFieldContext: <T extends any = any>(fieldName?: string | undefined) => FieldContextObj<T>;
 //# sourceMappingURL=FieldContext.d.ts.map

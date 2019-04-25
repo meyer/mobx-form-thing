@@ -28,9 +28,9 @@ type FormIfProps<T extends object> = FormIfFunctionProps<T> | FormIfChildProps<T
  *   a child function can be passed that receives the predicate value and returns either a `ReactElement` or `null`.
  */
 export const FormIf = <T extends object>({ predicate, children }: FormIfProps<T>): ReactElement | null => {
-  const formContext = useFormContext<T>();
+  const { formState } = useFormContext<T>();
   // since fieldValues is an observable object, we can utilise a computed to prevent unnecessary re-renders
-  const computedPredicate = useMemo(() => computed(() => predicate(formContext.fieldValues)), [predicate]);
+  const computedPredicate = useMemo(() => computed(() => predicate(formState.values)), [predicate]);
 
   return useObserver(() => {
     const predicateIsTrue = computedPredicate.get();
